@@ -1,6 +1,6 @@
 # Heroku Proxy
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/fordnox/heroku-proxy/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/crownaintanoob/heroku-proxy/tree/master)
 
 A free HTTP proxy that runs on Heroku.
 
