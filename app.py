@@ -27,6 +27,30 @@ def root(userid, cursor):
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
 
+@app.route('/passesgetfromgame/<gameid>/<cursor>')
+def root(userid, cursor):
+    cursorString = "&cursor=" + cursor if len(cursor) >= 1 else '&cursor=""'
+    url = "https://games.roblox.com/v1/games/" + idGame + "/game-passes?limit=30&sortOrder=Asc" + cursorString
+    r = requests.get(url, proxies={
+        "http": os.environ.get("httpProxyUrl"),
+        "https":  os.environ.get("httpsProxyUrl")
+    })
+    rr = Response(response=r.content, status=r.status_code)
+    rr.headers["Content-Type"] = r.headers['Content-Type']
+    return rr
+
+@app.route('/listgames/<userid>')
+def root(userid, cursor):
+    url = "https://games.roblox.com/v2/users/" + userid + "/games?accessFilter=public&sortOrder=Asc&limit=100
+    r = requests.get(url, proxies={
+        "http": os.environ.get("httpProxyUrl"),
+        "https":  os.environ.get("httpsProxyUrl")
+    })
+    rr = Response(response=r.content, status=r.status_code)
+    rr.headers["Content-Type"] = r.headers['Content-Type']
+    return rr
+
+
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 8000.
     port = int(os.environ.get('PORT', 8000))
