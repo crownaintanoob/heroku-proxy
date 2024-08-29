@@ -30,7 +30,7 @@ def root(userid, cursor):
 @app.route('/passesgetfromgame/<gameid>/<cursor>')
 def root2(gameid, cursor):
     cursorString = "&cursor=" + cursor if len(cursor) >= 1 else '&cursor=""'
-    url = "https://games.roblox.com/v1/games/" + idGame + "/game-passes?limit=30&sortOrder=Asc" + cursorString
+    url = "https://games.roblox.com/v1/games/" + gameid + "/game-passes?limit=30&sortOrder=Asc" + cursorString
     r = requests.get(url, proxies={
         "http": os.environ.get("httpProxyUrl"),
         "https":  os.environ.get("httpsProxyUrl")
