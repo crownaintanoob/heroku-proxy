@@ -18,7 +18,8 @@ def home():
 @app.route('/inventorygetplr/<userid>/<cursor>')
 def root(userid, cursor):
     cursor = cursor if isinstance(cursor, str) else ""
-    url = "https://www.roblox.com/users/inventory/list-json?assetTypeId=34&cursor=" + cursor + "&itemsPerPage=3&pageNumber=1&userId=" + userid
+    cursorGotStr = str(("&cursor=" + cursor)) if isinstance(cursor, str) else ""
+    url = "https://www.roblox.com/users/inventory/list-json?assetTypeId=34" + cursorGotStr + "&itemsPerPage=3&pageNumber=1&userId=" + userid
     r = requests.get(url, proxies={
         "http": "http://qywiproxy-rotate:qywiErmWhatTheSigma6959@p.webshare.io:80/",
         "https": "http://qywiproxy-rotate:qywiErmWhatTheSigma6959@p.webshare.io:80/"
