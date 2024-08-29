@@ -36,6 +36,7 @@ def root2(gameid, cursor):
     datajsonGot = dataUniverseId.json()
     cursorString = "&cursor=" + cursor if len(cursor) >= 1 else '&cursor=""'
     url = "https://games.roblox.com/v1/games/3803580056/game-passes?limit=30&sortOrder=Asc?cursor=213424"
+    print(datajsonGot)
     print(f'{datajsonGot["universeId"]}')
    # url = "https://games.roblox.com/v1/games/" + f'{datajsonGot["universeId"]}' + "/game-passes?limit=15&sortOrder=Asc" + cursorString
     r = requests.get(url, proxies={
