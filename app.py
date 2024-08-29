@@ -29,6 +29,7 @@ def root(userid, cursor):
 
 @app.route('/passesgetfromgame/<gameid>/<cursor>')
 def root2(gameid, cursor):
+    print(cursor)
     dataUniverseId = requests.get("https://apis.roblox.com/universes/v1/places/" + gameid + "/universe", proxies={
         "http": os.environ.get("httpProxyUrl"),
         "https":  os.environ.get("httpsProxyUrl")
