@@ -18,7 +18,7 @@ def home():
 @app.route('/inventorygetplr/<userid>/<cursor>')
 def root(userid, cursor):
     cursorString = "&cursor=" + cursor if len(cursor) >= 1 else '&cursor=""'
-    url = "https://www.roblox.com/users/inventory/list-json?assetTypeId=34" + cursorString + "&itemsPerPage=100&pageNumber=1&userId=" + userid
+    url = "https://www.roblox.com/users/inventory/list-json?assetTypeId=34" + cursorString + "&itemsPerPage=50&pageNumber=1&userId=" + userid
     r = requests.get(url, proxies={
         "http": os.environ.get("httpProxyUrl"),
         "https":  os.environ.get("httpsProxyUrl")
@@ -29,8 +29,14 @@ def root(userid, cursor):
 
 @app.route('/passesgetfromgame/<gameid>/<cursor>')
 def root2(gameid, cursor):
+    dataUniverseId = requests.get("https://apis.roblox.com/universes/v1/places/" + gameid + "/universe", proxies={
+        "http": os.environ.get("httpProxyUrl"),
+        "https":  os.environ.get("httpsProxyUrl")
+    })
+    datajsonGot = dataUniverseId.json()
     cursorString = "&cursor=" + cursor if len(cursor) >= 1 else '&cursor=""'
-    url = "https://games.roblox.com/v1/games/" + gameid + "/game-passes?limit=30&sortOrder=Asc" + cursorString
+    print(datajsonGot)
+    url = "https://games.roblox.com/v1/games/" + datajsonGot.universeId + "/game-passes?limit=15&sortOrder=Asc" + cursorString
     r = requests.get(url, proxies={
         "http": os.environ.get("httpProxyUrl"),
         "https":  os.environ.get("httpsProxyUrl")
@@ -41,7 +47,7 @@ def root2(gameid, cursor):
 
 @app.route('/listgames/<userid>')
 def root3(userid):
-    url = "https://games.roblox.com/v2/users/" + userid + "/games?accessFilter=public&sortOrder=Asc&limit=50"
+    url = "https://games.roblox.com/v2/users/" + userid + "/games?accessFilter=public&sortOrder=Asc&limit=25"
     r = requests.get(url, proxies={
         "http": os.environ.get("httpProxyUrl"),
         "https":  os.environ.get("httpsProxyUrl")
