@@ -20,8 +20,8 @@ def root(userid, cursor):
     cursorString = "&cursor=" + cursor if len(cursor) >= 1 else '&cursor=""'
     url = "https://www.roblox.com/users/inventory/list-json?assetTypeId=34" + cursorString + "&itemsPerPage=100&pageNumber=1&userId=" + userid
     r = requests.get(url, proxies={
-        "http": "http://qywiproxy-rotate:qywiErmWhatTheSigma6959@p.webshare.io:80/",
-        "https": "http://qywiproxy-rotate:qywiErmWhatTheSigma6959@p.webshare.io:80/"
+        "http": os.environ("httpProxyUrl"),#"http://qywiproxy-rotate:qywiErmWhatTheSigma6959@p.webshare.io:80/",
+        "https":  os.environ("httpsProxyUrl")#"http://qywiproxy-rotate:qywiErmWhatTheSigma6959@p.webshare.io:80/"
     })
     rr = Response(response=r.content, status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
