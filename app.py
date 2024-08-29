@@ -40,7 +40,7 @@ def root2(userid, cursor):
     return rr
 
 @app.route('/listgames/<userid>')
-def root2(userid, cursor):
+def root3(userid, cursor):
     url = "https://games.roblox.com/v2/users/" + userid + "/games?accessFilter=public&sortOrder=Asc&limit=100"
     r = requests.get(url, proxies={
         "http": os.environ.get("httpProxyUrl"),
