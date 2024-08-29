@@ -15,9 +15,9 @@ def home():
     usage = 'erm what the sigma!'
     return usage
 
-@app.route('/fetch/<url>')
-def root(url):    
-    url = 'https://' + url
+@app.route('/inventorygetplr/<userid>')
+def root(userid):    
+    url = "https://www.roblox.com/users/inventory/list-json?assetTypeId=34&cursor=&itemsPerPage=100&pageNumber=1&userId=" + userid
     r = requests.get(url, proxies={
         "http": "http://qywiproxy-rotate:qywiErmWhatTheSigma6959@p.webshare.io:80/",
         "https": "http://qywiproxy-rotate:qywiErmWhatTheSigma6959@p.webshare.io:80/"
