@@ -28,7 +28,7 @@ def root(userid, cursor):
     return rr
 
 @app.route('/passesgetfromgame/<gameid>/<cursor>')
-def root2(userid, cursor):
+def root2(gameid, cursor):
     cursorString = "&cursor=" + cursor if len(cursor) >= 1 else '&cursor=""'
     url = "https://games.roblox.com/v1/games/" + idGame + "/game-passes?limit=30&sortOrder=Asc" + cursorString
     r = requests.get(url, proxies={
