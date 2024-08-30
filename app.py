@@ -27,17 +27,14 @@ def root(userid, cursor):
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
 
-@app.route('/passesgetfromgame/<gameid>/<cursor>')
-def root2(gameid, cursor):
-    print(cursor)
+@app.route('/passesgetfromgame/<gameid>')
+def root2(gameid):
     dataUniverseId = requests.get("https://apis.roblox.com/universes/v1/places/" + gameid + "/universe", proxies={
         "http": os.environ.get("httpProxyUrl"),
         "https":  os.environ.get("httpsProxyUrl")
     })
     datajsonGot = dataUniverseId.json()
-    cursorString = "&cursor=" + cursor if len(cursor) >= 1 else ""
-    print(cursorString)
-    url = "https://games.roblox.com/v1/games/" + f'{datajsonGot["universeId"]}' + "/game-passes?limit=15" + cursorString + "&sortOrder=Asc"
+    url = "https://games.roblox.com/v1/games/" + f'{datajsonGot["universeId"]}' + "/game-passes?limit=15&sortOrder=Asc"
     r = requests.get(url, proxies={
         "http": os.environ.get("httpProxyUrl"),
         "https":  os.environ.get("httpsProxyUrl")
