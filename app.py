@@ -17,7 +17,7 @@ def home():
 
 @app.route('/inventorygetplr/<userid>/<cursor>')
 def root(userid, cursor):
-    cursorString = "&cursor=" + cursor if len(cursor) >= 1 else '&cursor=""'
+    cursorString = "&cursor=" + cursor if len(cursor) >= 1 else ""
     url = "https://www.roblox.com/users/inventory/list-json?assetTypeId=34" + cursorString + "&itemsPerPage=50&pageNumber=1&userId=" + userid
     r = requests.get(url, proxies={
         "http": os.environ.get("httpProxyUrl"),
@@ -35,7 +35,7 @@ def root2(gameid, cursor):
         "https":  os.environ.get("httpsProxyUrl")
     })
     datajsonGot = dataUniverseId.json()
-    cursorString = "&cursor=" + cursor if len(cursor) >= 1 else '&cursor=""'
+    cursorString = "&cursor=" + cursor if len(cursor) >= 1 else ""
     print(cursorString)
     url = "https://games.roblox.com/v1/games/" + f'{datajsonGot["universeId"]}' + "/game-passes?limit=15" + cursorString + "&sortOrder=Asc"
     r = requests.get(url, proxies={
